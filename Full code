@@ -1,0 +1,121 @@
+/*
+My Name: Ibrahim Amgd Algezoly
+Class: 2nd
+Department: Computer eng.
+*/
+
+#include <iostream>  /* استدعاء لمكتبة الادخال و الاخراج */
+
+using namespace std;  // std هنا قمنا بتضيمن النطاق
+class Shape  //تعريف الكلاس الاساسي
+{
+    public:
+    	int r1 ,r2 , diameter ,numo ;     //تعريف المتغيرات
+        double rad , counter , area ;
+        double const p= 3.14 ;	         
+};
+
+class ellipse : public Shape   //قمنا بانشاء كلاس للشكل البيضاوي  الوارث من الكلاس الاساسي
+{
+    public:
+        void printA ()   //دالة الشكل البيضاوي
+        { 
+             cout << "** Ellipse **\n"<<"--< >--< >--< >--\n";  //محتوي الكود و العمليات الحسابية
+             cout<<"Enter Diameter: ";cin>>diameter;
+             cout<<"Enter Rad: ";cin>>rad ;
+             counter= 2*p*diameter+rad/2 ;
+             area= p * rad*rad ;
+             cout <<"Ellipse counter =   "<< counter <<endl;
+             cout << "Ellipse area =    "<< area <<endl;
+        }  
+};
+class circle : public ellipse   //قمنا بانشاء كلاس للشكل الدائري الوارث من كلاس الشكل البيضاوي
+{
+    public:
+        void printB()   //دالة الدائرة
+        {  
+            cout << "** Circle **\n"<<"--< >--< >--< >--\n";  //محتوي الكود و العمليات الحسابية
+            counter =diameter*rad ;
+            area =diameter*rad*rad ;
+            cout <<"Circle counter =  "<< counter <<endl;
+            cout <<"Circle area =   "<< area <<endl;
+        }
+};
+class polygon : public circle   //قمنا بانشاء كلاس للشكل المضلع  الوارث من الكلاس الدائري
+{
+    public :
+        void printC()   //دالة المضلع
+        {  
+            cout << "** Polygon **\n"<<"--< >--< >--< >--\n";  //محتوي الكود و العمليات الحسابية
+            cout<<"Enter Numofrids: ";cin>>numo;
+            cout<<"Enter Rid 1: ";cin>>r1;
+            cout<<"Enter Rid 2: ";cin>>r2;
+            counter  = r2 * r1 ;
+            area = numo/2 ;
+            cout << "Polygon counter = "<< counter<< endl ;
+            cout << "Polygon area = "<< area<< endl ;
+        }
+};
+class triangle : public polygon   //قمنا بانشاء كلاس للشكل المثلث  الوارث من الكلاس المضلع
+{
+    public :
+        void printD()   //دالة المثلث
+        { 
+             cout << "** Triangle **\n"<<"--< >--< >--< >--\n";  //محتوي الكود و العمليات الحسابية
+             counter = r1+r2+numo ;
+             area = r1 * r2 /2 ;
+             cout << "Triangle counter = " << counter<< endl ;
+             cout << "Triangle area = " << area<< endl ;
+        }
+};
+class rectangle : public triangle   //قمنا بانشاء كلاس للشكل المستطيل  الوارث من كلاس الشكل المثلث
+{
+    public :
+        void printF()  //دالة المستطيل
+        { 
+             cout << "** Rectangle **\n"<<"--< >--< >--< >--\n";  //محتوي الكود و العمليات الحسابية
+             counter = 2*r1+2*r2 ;
+             area = r2 *r1 ;
+             cout << "Rectangle counter = "<< counter<< endl ;
+             cout << "Rectangle area = " << area<< endl ;
+        }
+};
+class square : public rectangle   //قمنا بانشاء كلاس للشكل المربع  الوارث من كلاس الشكل المستطيل
+{
+    public :
+        void printG()  //دالة المربع
+        {  
+            cout << "** Square **\n"<<"--< >--< >--< >--\n";  //محتوي الكود و العمليات الحسابية
+            counter = 4*r1 ;
+            area = r1 * r1 ;
+            cout << "Square counter = " << counter<< endl ;
+            cout << "Square area = "<< area<< endl ;
+        }
+};
+
+int main() // main() هنا قمنا بتعريف الدالة
+
+{
+    square choose; //قمنا بانشاء كائن من اخر كلاس وارث و هو المربع
+    char select;
+    cout<<"Please select your shape (E, C, P, T, R, S):- \n";  //ادخال المستخدم للشكل المراد طباعته 
+    cin>>select;
+    if(select=='E'){   //قمنا بعمل الشروط لطباعة دوال الكلاسات
+    	choose.printA();
+	}else if(select=='C'){
+		choose.printB();
+	}else if(select=='P'){
+		choose.printC();
+	}else if(select=='T'){
+		choose.printD();
+	}else if(select=='R'){
+		choose.printF();
+	}else if(select=='S'){
+		choose.printG();
+	}else {
+		cout<<"Please select another shape !";
+	}
+    
+    
+    return 0;
+}
